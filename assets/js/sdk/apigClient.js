@@ -34,7 +34,7 @@ apigClientFactory.newClient = function (config) {
         config.secretKey = '';
     }
     if(config.apiKey === undefined) {
-        config.apiKey = 'pecmqT2LKc25U6xri1ga06tpfb5YD87T80NouL9w';
+        config.apiKey = '';
     }
     if(config.sessionToken === undefined) {
         config.sessionToken = '';
@@ -53,7 +53,7 @@ apigClientFactory.newClient = function (config) {
 
     
     // extract endpoint and path from url
-    var invokeUrl = 'https://46hf3deap8.execute-api.us-east-1.amazonaws.com/test';
+    var invokeUrl = 'https://ayclrp21e7.execute-api.us-east-1.amazonaws.com/test';
     var endpoint = /(^https?:\/\/[^\/]+)/g.exec(invokeUrl)[1];
     var pathComponent = invokeUrl.substring(endpoint.length);
 

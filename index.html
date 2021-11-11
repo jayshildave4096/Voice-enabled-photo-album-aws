@@ -92,16 +92,15 @@
       <div class="container-fluid" style="padding: 20px;">
         <div class="row" >
           <div class="col-3">
-            <input id="search-tags" class="form-control" placeholder="Enter Search Tags" >
-            <ul id="search-tag-list" class="list-group">
-              
-            </ul>
+            <input id="search-query" value="" class="form-control" placeholder="Enter Search Query" oninput="changeText()" >
           </div>
           <div class="col-1">
-            <button id="insert-search-tag" class="btn btn-primary" onclick="insert_search_tags()">Add Tag</button>
-        </div>
+            <button id="start-recording" class="btn btn-primary" onclick="startRecording()">Start Voice</button>
+          </div>
+          <div class="col-1">
+            <button id="start-recording" class="btn btn-primary" onclick="stopRecording()">Stop Voice</button>
+          </div>
           <div class="col-1" >
-            
               <div class="form-group" >
                 <button id="submit-button" class="btn btn-primary" onclick="searchImages()"> Search</button>
               </div>
@@ -115,7 +114,7 @@
     </div>
     <script>
 
-      var sdk = apigClientFactory.newClient({});
+      var sdk = apigClientFactory.newClient({apiKey: "e1PF1Bk1qx6IOxJtP8qBqhZTwhCYgtWgQcHmUZ60"});
 
     </script>
 
