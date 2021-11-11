@@ -1,0 +1,135 @@
+<!-- Template: http://getbootstrap.com/examples/cover/ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="This is a starter project Photo Album built on AWS.">
+    <meta name="author" content="Jayshil Dave and Ameya Gharpure">
+
+    <title>Photo Album</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./assets/css/cover.css" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+    <link href="./assets/css/chat.css" rel="stylesheet">
+
+    <!-- api gateway generated sdk -->
+    <script src="./assets/js/sdk/lib/axios/dist/axios.standalone.js"></script>
+    <script src="./assets/js/sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script src="./assets/js/sdk/lib/CryptoJS/rollups/sha256.js"></script>
+    <script src="./assets/js/sdk/lib/CryptoJS/components/hmac.js"></script>
+    <script src="./assets/js/sdk/lib/CryptoJS/components/enc-base64.js"></script>
+    <script src="./assets/js/sdk/lib/url-template/url-template.js"></script>
+    <script src="./assets/js/sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script src="./assets/js/sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script src="./assets/js/sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script src="./assets/js/sdk/lib/apiGatewayCore/utils.js"></script>
+
+    <script src="./assets/js/sdk/apigClient.js"></script>
+
+    <script src="./assets/js/aws-sdk.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container-fluid bg-dark">
+      
+      
+      <nav class="navbar navbar-expand-sm navbar-dark">
+        <div class="container-fluid">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Photo Album</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      
+      <div class="container-fluid" style="padding: 20px;">
+        <div class="row">
+          <div class="col-3">
+            <input id="input-tags" class="form-control" placeholder="Enter Tags" name="tags">
+            <ul id="input-tag-list" class="list-group">
+              
+            </ul>
+          </div>
+          <div class="col-1">
+              <button id="insert-tag" class="btn btn-primary" onclick="insert_tags()">Add Tag</button>
+          </div>
+          <div class="col-2">
+            <form>
+              <input type="file" onchange="validate_File()" class="form-control" id="file" />
+            </form>
+          </div>
+          <div class="col-3">
+              <button id="submit-button" class="btn btn-primary" onclick="uploadImage()"> Add Photo</button>
+          </div>
+        </div> 
+      </div>
+      
+      
+      <div class="container-fluid" style="padding: 20px;">
+        <div class="row" >
+          <div class="col-3">
+            <input id="search-tags" class="form-control" placeholder="Enter Search Tags" >
+            <ul id="search-tag-list" class="list-group">
+              
+            </ul>
+          </div>
+          <div class="col-1">
+            <button id="insert-search-tag" class="btn btn-primary" onclick="insert_search_tags()">Add Tag</button>
+        </div>
+          <div class="col-1" >
+            
+              <div class="form-group" >
+                <button id="submit-button" class="btn btn-primary" onclick="searchImages()"> Search</button>
+              </div>
+          </div>
+        </div> 
+      </div>
+      
+      <div  id="image-array" class="container-fluid" style="padding: 20px;">
+        
+      </div>
+    </div>
+    <script>
+
+      var sdk = apigClientFactory.newClient({});
+
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script>window.jQuery || document.write('<script src="./assets/js/vendor/jquery.min.js"><\/script>')</script> -->
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- custom scroll bar -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+    <!-- photo js -->
+    <script src="./assets/js/photo.js"></script>
+  </body>
+</html>
