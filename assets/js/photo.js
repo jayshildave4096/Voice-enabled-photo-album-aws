@@ -21,14 +21,11 @@ window.onload = function () {
   var additionalParams = {
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-      "Access-Control-Allow-Headers": "Content-Type",
       "Content-Type": "application/json",
     },
   };
-  sdk
-    .searchGet(params, body, additionalParams)
-    .then(function (res) {
+  sdk.searchGet(params, body, additionalParams).then(function (res) {
+      console.log("THE RESPONSE IS\n");   
       console.log(res);
     })
     .catch(function (result) {});
