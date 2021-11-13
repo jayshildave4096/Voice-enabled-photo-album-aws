@@ -55,28 +55,27 @@ function generateArray(images) {
     }
     row.appendChild(new_row);
   } else {
-    var new_row=document.createElement("div");
-	new_row.className = "row";
-    for (i = 1; i <=images.length; i++) {
+    var new_row = document.createElement("div");
+    new_row.className = "row";
+    for (i = 1; i <= images.length; i++) {
       if (i % 3 == 0) {
         new_row = document.createElement("div");
         new_row.className = "row";
-	   } 
-        var col = document.createElement("div");
-        col.className = "col-2";
-        col.style = "padding:5px;";
-        new_row.appendChild(col);
-        var img = document.createElement("img");
-        img.className = "img-thumbnail";
-        img.setAttribute(
-          "src",
-          `https://hw2-ccbd-b2.s3.amazonaws.com/${images[i-1]}`
-        );
-        img.setAttribute("height", "200px");
-        img.setAttribute("width", "200px");
-        col.appendChild(img);
-        row.appendChild(new_row);
-      
+      }
+      var col = document.createElement("div");
+      col.className = "col-2";
+      col.style = "padding:5px;";
+      new_row.appendChild(col);
+      var img = document.createElement("img");
+      img.className = "img-thumbnail";
+      img.setAttribute(
+        "src",
+        `https://hw2-ccbd-b2.s3.amazonaws.com/${images[i - 1]}`
+      );
+      img.setAttribute("height", "200px");
+      img.setAttribute("width", "200px");
+      col.appendChild(img);
+      row.appendChild(new_row);
     }
   }
 }
@@ -111,7 +110,7 @@ recognition.onresult = function (event) {
   if (!mobileRepeatBug) {
     noteContent += transcript;
     searchquery.value = noteContent;
-	noteContent="";
+    noteContent = "";
   }
 };
 
@@ -136,28 +135,35 @@ recognition.onerror = function (event) {
 function uploadImage() {
   var file = document.getElementById("file").files[0];
   const reader = new FileReader();
-
-  var encoded_image = getBase64(file).then((data) => {
-    console.log(file.name);
-    var body = data;
-    var params = {
-      "x-api-key": "WXvq5zPz9YkBLVPJx0aH8ECo6FDGEfH7FAHMqmS6",
-      "file-name": file.name,
-      "Content-Type": file.type + ";base64",
-      bucket: "hw2-ccbd-b2",
-      "x-amz-meta-customLabels": "",
-    };
-    var additionalParams = {};
-    sdk.uploadPut(params, body, additionalParams).then(function (res) {
-      console.log(res);
-      if (res.status == 200) {
-        alert("File Uploaded Successfully");
-      }
-      searchquery.value = "";
-      // searchImages();
-      window.location.reload();
+  if (
+    file.type.includes("jpg") ||
+    file.type.includes("jpeg") ||
+    file.type.includes("png")
+  ) {
+    var encoded_image = getBase64(file).then((data) => {
+      console.log(custom_tags);
+      var body = data;
+      var params = {
+        "x-api-key": "WXvq5zPz9YkBLVPJx0aH8ECo6FDGEfH7FAHMqmS6",
+        "file-name": file.name,
+        "Content-Type": file.type + ";base64",
+        bucket: "hw2-ccbd-b2",
+        "x-amz-meta-customLabels": custom_tags.join(),
+      };
+      var additionalParams = {};
+      sdk.uploadPut(params, body, additionalParams).then(function (res) {
+        console.log(res);
+        if (res.status == 200) {
+          alert("File Uploaded Successfully");
+        }
+        searchquery.value = "";
+        // searchImages();
+        window.location.reload();
+      });
     });
-  });
+  } else {
+    alert("Invalid File Type");
+  }
 }
 
 function getBase64(file) {
